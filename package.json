@@ -1,0 +1,26 @@
+{
+  "name": "tr-javascript-refresh",
+  "description": "TR-JavaScript-refresh",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeyhw1/TR-JavaScript-refresh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikeyhw1/TR-JavaScript-refresh/issues"
+  },
+  "homepage": "https://github.com/mikeyhw1/TR-JavaScript-refresh#readme"
+}
