@@ -4,11 +4,10 @@ TR-JavaScript-refresh
 
 Finished list:
 
-    none
+    exercise001.md
 
 Unfinished list:
 
-    exercise001.md
     exercise002.md
     exercise003.md
     exercise004.md
