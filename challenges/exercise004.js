@@ -1,41 +1,57 @@
 export function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  return nums.filter(item => {
+    return item < 1
+  })
 }
 
 export function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // Your code here
+
+  return names.filter(item => {
+    return item.charAt(0) === char
+  })
 }
 
 export function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
+
+  return words.filter(item => {
+    return item.split(' ')[0] === 'to'
+  })
 }
 
 export function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+
+  return nums.filter(item => Number.isInteger(item))
 }
 
 export function getCities(users) {
   if (!users) throw new Error("users is required");
-  // Your code here
+
+  return users.map(item => item?.data?.city?.displayName)
 }
 
 export function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+
+  return nums.map(item => {
+    const squareRoot = Math.sqrt(item)
+    return Math.round(squareRoot * 100) / 100
+  })
 }
 
 export function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+
+  return sentences.filter(item => item.toLowerCase().includes(str))
 }
 
 export function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-  // Your code here
+
+  return triangles.map(item => Math.max(...item))
 }
