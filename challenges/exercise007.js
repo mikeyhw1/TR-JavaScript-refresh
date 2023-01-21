@@ -1,26 +1,45 @@
 /**
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
+ * @returns {Number}
  */
 export const sumDigits = (n) => {
   if (n === undefined) throw new Error("n is required");
+
+  if (Number.isInteger(n)) {
+    let sum = 0
+    const digitsArray = n.toString().split("")
+    digitsArray.map(item => sum += parseInt(item))
+    return sum
+  } else {
+    return false
+  }
 };
 
 /**
- * This function creates a range of numbers as an array. It received a start, an end and a step. Step is the gap between numbers in the range. For example, if start = 3, end = 11 and step = 2 the resulting range would be: [3, 5, 7, 9, 11]
+ * This function creates a range of numbers as an array. It received a start, an end and a step. Step is the gap between numbers in the range.
+ * For example, if start = 3, end = 11 and step = 2 the resulting range would be: [3, 5, 7, 9, 11]
  * Both the start and the end numbers are inclusive.
  * Step is an optional parameter. If it is not provided, assume the step is 1.
  * @param {Number} start
  * @param {Number} end
  * @param {Number} step
+ * @returns {Array}
  */
-export const createRange = (start, end, step) => {
+export const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  if (step === undefined)
-    console.log(
-      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-    );
+  // if (step === undefined)
+  //   console.log(
+  //     "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
+  //   );
+
+  let arr = []
+
+  for (let i = start; i <= end; i += step) {
+    arr.push(i)
+  }
+  return arr
 };
 
 /**
@@ -51,10 +70,32 @@ export const createRange = (start, end, step) => {
  * The date will be provided in the format "2019-05-04" (YYYY-MM-DD)
  * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100 minutes of screentime on that date.
  * @param {Array} users
+ * @param {String} date
+ * @returns {Array}
  */
-export const getScreentimeAlertList = (users, date) => {
+export const getScreentimeAlertList = (users, input_date) => {
   if (users === undefined) throw new Error("users is required");
-  if (date === undefined) throw new Error("date is required");
+  if (input_date === undefined) throw new Error("date is required");
+
+  if (users && users.length > 0) {
+    let userList = []
+    users.map(item => {
+      const { username, screenTime } = item
+      screenTime.map(item2 => {
+        const { date, usage } = item2
+        if (date === input_date) {
+          let totalTime = 0
+          for (let key in usage) {
+            totalTime += usage[key]
+          }
+          if (totalTime > 100) {
+            userList.push(username)
+          }
+        }
+      })
+    })
+    return userList
+  } else { return false }
 };
 
 /**
