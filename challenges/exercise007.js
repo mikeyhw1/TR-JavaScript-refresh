@@ -35,7 +35,6 @@ export const createRange = (start, end, step = 1) => {
   //   );
 
   let arr = []
-
   for (let i = start; i <= end; i += step) {
     arr.push(i)
   }
@@ -79,6 +78,7 @@ export const getScreentimeAlertList = (users, input_date) => {
 
   if (users && users.length > 0) {
     let userList = []
+
     users.map(item => {
       const { username, screenTime } = item
       screenTime.map(item2 => {
@@ -94,6 +94,7 @@ export const getScreentimeAlertList = (users, input_date) => {
         }
       })
     })
+
     return userList
   } else { return false }
 };

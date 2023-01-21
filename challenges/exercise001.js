@@ -47,19 +47,13 @@ export function reverseWord(word) {
 export function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
 
-  return words.map(item => item.split("").reverse().join(""));
+  return words.map(item => reverseWord(item));
 }
 
 export function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
 
-  let count = 0
-  users.map(item => {
-    if (item.type === 'Linux') {
-      count += 1
-    }
-  })
-  return count
+  return users.filter(item => item.type === 'Linux').length
 }
 
 export function getMeanScore(scores) {
