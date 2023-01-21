@@ -10,8 +10,8 @@ Finished list:
     exercise004.md
     exercise005.md
     exercise006.md
+    exercise007.md
 
 Unfinished list:
 
-    exercise007.md
     exercise008-bonus-activity.md

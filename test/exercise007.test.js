@@ -2,9 +2,8 @@ import {
     sumDigits,
     createRange,
     getScreentimeAlertList,
-    // isItPrime,
-    // createMatrix,
-    // areWeCovered
+    hexToRGB,
+    findWinner
 } from "../challenges/exercise007";
 import {
     largeData
@@ -85,76 +84,50 @@ describe("getScreentimeAlertList", () => {
     });
 });
 
-// describe("isItPrime", () => {
-//     test("check is a prime number or not", () => {
-//         expect(isItPrime(7)).toBe(true);
-//         expect(isItPrime(11)).toBe(true);
-//         expect(isItPrime(13)).toBe(true);
-//         expect(isItPrime(10)).toBe(false);
-//         expect(isItPrime(3)).toBe(true);
-//         expect(isItPrime(2)).toBe(true);
-//         expect(isItPrime(333)).toBe(false);
-//         expect(isItPrime(111)).toBe(false);
-//         expect(isItPrime(127)).toBe(true);
-//         expect(isItPrime(129)).toBe(false);
-//     });
+describe("hexToRGB", () => {
+    test("transform the hex code into an RGB code", () => {
+        expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+        expect(hexToRGB("#AB00C1")).toBe("rgb(171,0,193)");
+        expect(hexToRGB("#C09001")).toBe("rgb(192,144,1)");
+        expect(hexToRGB("#FFFFFF")).toBe("rgb(255,255,255)");
+        expect(hexToRGB("#000000")).toBe("rgb(0,0,0)");
+    });
+});
 
-//     test("return null if it is 0", () => {
-//         expect(isItPrime(0)).toBe(null);
-//     });
+describe("findWinner", () => {
+    test('return "X" if player X has won, "0" if the player 0 has won', () => {
+        expect(findWinner([
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ])).toBe("X");
+        expect(findWinner([
+            ["X", "X", null],
+            ["X", "X", "0"],
+            ["0", "0", "0"]
+        ])).toBe("0");
+        expect(findWinner([
+            ["X", "X", "0"],
+            ["X", "0", "X"],
+            ["0", "0", null]
+        ])).toBe("0");
+        expect(findWinner([
+            ["X", "X", "X"],
+            ["X", "0", "X"],
+            ["0", "0", "0"]
+        ])).toBe("X");
+    });
 
-//     test("return false if not integer or negative", () => {
-//         expect(isItPrime(-1)).toBe(false);
-//         expect(isItPrime(-11)).toBe(false);
-//         expect(isItPrime(-7)).toBe(false);
-//         expect(isItPrime(-3)).toBe(false);
-//         expect(isItPrime(3.3)).toBe(false);
-//         expect(isItPrime(3.33)).toBe(false);
-//         expect(isItPrime(5.05)).toBe(false);
-//         expect(isItPrime(5.5)).toBe(false);
-//     });
-// });
-
-// describe("createMatrix", () => {
-//     test("return an array of n arrays, each filled with n items", () => {
-//         expect(createMatrix(3, "foo")).toEqual([
-//             ["foo", "foo", "foo"],
-//             ["foo", "foo", "foo"],
-//             ["foo", "foo", "foo"]
-//         ]);
-//         expect(createMatrix(4, "0")).toEqual([
-//             ["0", "0", "0", "0"],
-//             ["0", "0", "0", "0"],
-//             ["0", "0", "0", "0"],
-//             ["0", "0", "0", "0"]
-//         ]);
-//         expect(createMatrix(2, " ")).toEqual([
-//             [" ", " "],
-//             [" ", " "]
-//         ]);
-//         expect(createMatrix(2, "")).toEqual([
-//             ["", ""],
-//             ["", ""]
-//         ]);
-//     });
-// });
-
-// describe("areWeCovered", () => {
-//     test("return true/false depending on whether there are enough staff scheduled for the given day", () => {
-//         const staff = [
-//             { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
-//             { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
-//             { name: "Mike", rota: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"] },
-//             { name: "Paul", rota: ["Saturday", "Sunday", "Monday", "Wednesday", "Thursday"] },
-//         ]
-//         expect(areWeCovered(staff, "Saturday")).toBe(true);
-//         expect(areWeCovered(staff, "Sunday")).toBe(true);
-//         expect(areWeCovered(staff, "Monday")).toBe(true);
-//         expect(areWeCovered(staff, "Tuesday")).toBe(true);
-//         expect(areWeCovered(staff, "Wednesday")).toBe(true);
-//         expect(areWeCovered(staff, "Thursday")).toBe(false);
-//         expect(areWeCovered(staff, "Friday")).toBe(false);
-//     });
-// });
-
-
+    test('return null if no winner', () => {
+        expect(findWinner([
+            [null, null, null],
+            ["X", "X", null],
+            ["0", "0", null]
+        ])).toBe(null);
+        expect(findWinner([
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]
+        ])).toBe(null);
+    });
+});
