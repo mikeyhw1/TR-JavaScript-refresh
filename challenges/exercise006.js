@@ -90,8 +90,8 @@ export const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
 
-  // TODO:
-
+  const arrayItem = Array(n).fill(fill)
+  return Array(n).fill(arrayItem)
 };
 
 /**
@@ -111,6 +111,11 @@ export const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
 
-  // TODO:
-
+  let availableStaff = 0
+  staff.map(item => {
+    if (item?.rota.includes(day)) {
+      availableStaff += 1
+    }
+  })
+  return (availableStaff >= 3)
 };
